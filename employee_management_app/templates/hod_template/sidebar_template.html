@@ -29,7 +29,7 @@
             <a href="{{ add_staff }}" class="nav-link {% if request.path == add_staff %} active {% endif %}">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Add Staff
+                Add Manager
               </p>
             </a>
           </li>
@@ -39,7 +39,7 @@
             <a href="{% url 'manage_staff' %}" class="nav-link {% if request.path == manage_staff %} active {% endif %} {% if request.path == edit_staff %} active {% endif %}">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Manage Staff
+                Manage Manager
               </p>
             </a>
           </li>

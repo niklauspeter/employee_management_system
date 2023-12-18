@@ -36,7 +36,13 @@ urlpatterns = [
     path('add_course_save', HodViews.add_course_save,name="add_course_save"),
     path('add_student', HodViews.add_student,name="add_student"),
     path('add_student_save', HodViews.add_student_save,name="add_student_save"),
-     path('manage_staff', HodViews.manage_staff,name="manage_staff"),
+    path('manage_staff', HodViews.manage_staff,name="manage_staff"),
     path('manage_student', HodViews.manage_student,name="manage_student"),
-    path('manage_course', HodViews.manage_course,name="manage_course")
+    path('manage_course', HodViews.manage_course,name="manage_course"),
+    path('edit_staff/<str:staff_id>', HodViews.edit_staff,name="edit_staff"),
+    path('edit_staff_save', HodViews.edit_staff_save,name="edit_staff_save"),
+    path('edit_student/<str:student_id>', HodViews.edit_student,name="edit_student"),
+    path('edit_student_save', HodViews.edit_student_save,name="edit_student_save"),
+    path('edit_course/<str:course_id>', HodViews.edit_course,name="edit_course"),
+    path('edit_course_save', HodViews.edit_course_save,name="edit_course_save")
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
