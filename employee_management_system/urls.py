@@ -20,7 +20,7 @@ from django.urls import path
 
 from django.urls import path
 from employee_management_system import settings
-from employee_management_app import views
+from employee_management_app import views, HodViews
 
 urlpatterns = [
     path('demo', views.showDemoPage),
@@ -29,4 +29,7 @@ urlpatterns = [
     path('doLogin',views.doLogin),
     path('get_user_details', views.GetUserDetails),
     path('logout_user', views.logout_user,name="logout"),
+    path('admin_home',HodViews.admin_home,name="admin_home"),
+    path('add_staff',HodViews.add_staff,name="add_staff"),
+    path('add_staff_save',HodViews.add_staff_save,name="add_staff_save")
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
