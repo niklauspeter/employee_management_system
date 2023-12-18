@@ -35,5 +35,8 @@ urlpatterns = [
     path('add_course', HodViews.add_course,name="add_course"),
     path('add_course_save', HodViews.add_course_save,name="add_course_save"),
     path('add_student', HodViews.add_student,name="add_student"),
-    path('add_student_save', HodViews.add_student_save,name="add_student_save")
+    path('add_student_save', HodViews.add_student_save,name="add_student_save"),
+     path('manage_staff', HodViews.manage_staff,name="manage_staff"),
+    path('manage_student', HodViews.manage_student,name="manage_student"),
+    path('manage_course', HodViews.manage_course,name="manage_course")
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
