@@ -78,3 +78,30 @@ def add_student_save(request):
         else:
             form=AddStudentForm(request.POST)
             return render(request, "hod_template/add_student_template.html", {"form": form})
+def add_course(request):
+    return render(request,"hod_template/add_course_template.html")
+
+def add_course_save(request):
+    if request.method!="POST":
+        return HttpResponse("Method Not Allowed")
+    else:
+        course=request.POST.get("course")
+        try:
+            course_model=Courses(course_name=course)
+            course_model.save()
+            messages.success(request,"Successfully Added Course")
+            return HttpResponseRedirect(reverse("add_course"))
+        except:
+            messages.error(request,"Failed To Add Course")
+            return HttpResponseRedirect(reverse("add_course"))
+def manage_staff(request):
+    staffs=Staffs.objects.all()
+    return render(request,"hod_template/manage_staff_template.html",{"staffs":staffs})
+
+def manage_student(request):
+    students=Students.objects.all()
+    return render(request,"hod_template/manage_student_template.html",{"students":students})
+
+def manage_course(request):
+    courses=Courses.objects.all()
+    return render(request,"hod_template/manage_course_template.html",{"courses":courses})
