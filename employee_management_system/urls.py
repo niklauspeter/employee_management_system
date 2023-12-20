@@ -25,8 +25,8 @@ from employee_management_app import views, HodViews, StaffViews, StudentViews
 urlpatterns = [
     path('demo', views.showDemoPage),
     path('admin/', admin.site.urls),
-    path('', views.ShowLoginPage),
-    path('doLogin',views.doLogin),
+    path('', views.ShowLoginPage, name="show_login"),
+    path('doLogin',views.doLogin, name="do_login"),
     path('get_user_details', views.GetUserDetails),
     path('logout_user', views.logout_user,name="logout"),
     path('admin_home',HodViews.admin_home,name="admin_home"),
