@@ -255,3 +255,34 @@ def add_subject_save(request):
         except:
             messages.error(request,"Failed to Add Subject")
             return HttpResponseRedirect(reverse("add_subject"))
+
+def edit_subject(request,subject_id):
+    subject=Subjects.objects.get(id=subject_id)
+    courses=Courses.objects.all()
+    staffs=CustomUser.objects.filter(user_type=2)
+    return render(request,"hod_template/edit_subject_template.html",{"subject":subject,"staffs":staffs,"courses":courses,"id":subject_id})
+
+def edit_subject_save(request):
+    if request.method!="POST":
+        return HttpResponse("<h2>Method Not Allowed</h2>")
+    else:
+        subject_id=request.POST.get("subject_id")
+        subject_name=request.POST.get("subject_name")
+        staff_id=request.POST.get("staff")
+        course_id=request.POST.get("course")
+
+        try:
+            subject=Subjects.objects.get(id=subject_id)
+            subject.subject_name=subject_name
+            staff=CustomUser.objects.get(id=staff_id)
+            subject.staff_id=staff
+            course=Courses.objects.get(id=course_id)
+            subject.course_id=course
+            subject.save()
+
+            messages.success(request,"Successfully Edited Subject")
+            return HttpResponseRedirect(reverse("edit_subject",kwargs={"subject_id":subject_id}))
+        except:
+            messages.error(request,"Failed to Edit Subject")
+            return HttpResponseRedirect(reverse("edit_subject",kwargs={"subject_id":subject_id}))
+
