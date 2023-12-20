@@ -82,7 +82,8 @@
             </a>
           </li>
           <li class="nav-item">
-           
+            {% url 'add_subject' as add_subject %}
+            <a href="{% url 'add_subject' %}" class="nav-link {% if request.path == add_subject %} active {% endif %}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Add Subject
