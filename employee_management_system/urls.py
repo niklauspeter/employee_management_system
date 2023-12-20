@@ -20,7 +20,7 @@ from django.urls import path
 
 from django.urls import path
 from employee_management_system import settings
-from employee_management_app import views, HodViews
+from employee_management_app import views, HodViews, StaffViews, StudentViews
 
 urlpatterns = [
     path('demo', views.showDemoPage),
@@ -50,5 +50,6 @@ urlpatterns = [
     path('manage_subject', HodViews.manage_subject,name="manage_subject"),
     path('edit_subject/<str:subject_id>', HodViews.edit_subject,name="edit_subject"),
     path('edit_subject_save', HodViews.edit_subject_save,name="edit_subject_save"),
-    path('staff_home', StaffViews.staff_home, name="staff_home")
+    path('staff_home', StaffViews.staff_home, name="staff_home"),
+    path('student_home', StudentViews.student_home, name="student_home")
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
