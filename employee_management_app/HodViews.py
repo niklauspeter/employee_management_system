@@ -102,6 +102,10 @@ def manage_student(request):
     students=Students.objects.all()
     return render(request,"hod_template/manage_student_template.html",{"students":students})
 
+def manage_subject(request):
+    subjects=Subjects.objects.all()
+    return render(request,"hod_template/manage_subject_template.html",{"subjects":subjects})
+
 def manage_course(request):
     courses=Courses.objects.all()
     return render(request,"hod_template/manage_course_template.html",{"courses":courses})
