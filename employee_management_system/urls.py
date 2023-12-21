@@ -50,6 +50,11 @@ urlpatterns = [
     path('manage_subject', HodViews.manage_subject,name="manage_subject"),
     path('edit_subject/<str:subject_id>', HodViews.edit_subject,name="edit_subject"),
     path('edit_subject_save', HodViews.edit_subject_save,name="edit_subject_save"),
+    path('manage_session', HodViews.manage_session,name="manage_session"),
+    path('add_session_save', HodViews.add_session_save,name="add_session_save"),
+    #staff Url Paths
     path('staff_home', StaffViews.staff_home, name="staff_home"),
-    path('student_home', StudentViews.student_home, name="student_home")
+    path('student_home', StudentViews.student_home, name="student_home"),
+    # path('staff_take_attendance', StaffViews.staff_take_attendance, name="staff_take_attendance")
+    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
