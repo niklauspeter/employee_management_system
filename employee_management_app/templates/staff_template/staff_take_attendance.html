@@ -97,7 +97,6 @@ Take Attendance
                 alert("Error in Fetching Student")
             })
 
-
             $(document).on("click","#save_attendance",function(){
 
                 $(this).attr("disabled","disabled")
@@ -109,32 +108,33 @@ Take Attendance
                         else{
                             return {"id":$(this).val(),"status":0};
                         }
-                 }).get()
+                }).get()
                 var attendance_date=$("#attendance_date").val();
                 var subject_id=$("#subject").val();
                 var session_year_id=$("#session_year").val();
                 console.log(student_data)
                 student_data=JSON.stringify(student_data)
 
-                // $.ajax({
-                //         url:'{% url 'save_attendance_data' %}',
-                //         type:'POST',
-                //         data:{student_ids:student_data,attendance_date:attendance_date,subject_id:subject_id,session_year_id:session_year_id},
-                //     })
-                //     .done(function(response){
+                $.ajax({
+                        url:'{% url 'save_attendance_data' %}',
+                        type:'POST',
+                        data:{student_ids:student_data,attendance_date:attendance_date,subject_id:subject_id,session_year_id:session_year_id},
+                    })
+                    .done(function(response){
 
-                //         if(response=="OK"){
-                //             alert("Attendance Save")
-                //         }
-                //         else{
-                //             alert("Error in Saving Data")
-                //         }
-                //         location.reload()
-                //     })
-                //     .fail(function(){
-                //         alert("Error in Saving Student")
-                //     })
-            })
+                        if(response=="OK"){
+                            alert("Attendance Save")
+                        }
+                        else{
+                            alert("Error in Saving Data")
+                        }
+                        location.reload()
+                    })
+                    .fail(function(){
+                        alert("Error in Saving Student")
+                    })
+                })
+           
         })
     })
 </script>

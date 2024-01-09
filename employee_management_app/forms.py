@@ -24,8 +24,8 @@ class AddStudentForm(forms.Form):
         small_course=(course.id,course.course_name)
         course_list.append(small_course)
     # except:
-        # course_list=[]
-    #course_list=[]
+    #     course_list=[]
+    # course_list=[]
 
     session_list = []
     try:
