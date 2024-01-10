@@ -20,7 +20,7 @@ from django.urls import path
 
 from django.urls import path
 from employee_management_system import settings
-from employee_management_app import views, HodViews, StaffViews, StudentViews
+from employee_management_app import views, HodViews, StaffViews, StudentViews, EditResultViewClass
 
 urlpatterns = [
     path('demo', views.showDemoPage),
@@ -63,6 +63,8 @@ urlpatterns = [
     path('save_updateattendance_data', StaffViews.save_updateattendance_data, name="save_updateattendance_data"),
     path('staff_add_result', StaffViews.staff_add_result, name="staff_add_result"),
     path('save_student_result', StaffViews.save_student_result, name="save_student_result"),
+    path('edit_student_result',EditResultViewClass.as_view(), name="edit_student_result"),
+    path('fetch_result_student',StaffViews.fetch_result_student, name="fetch_result_student"),
     #student Url Paths
     path('student_home', StudentViews.student_home, name="student_home"),
     path('student_view_attendance', StudentViews.student_view_attendance, name="student_view_attendance"),
