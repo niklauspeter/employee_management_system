@@ -21,6 +21,7 @@ from django.urls import path
 from django.urls import path
 from employee_management_system import settings
 from employee_management_app import views, HodViews, StaffViews, StudentViews, EditResultViewClass
+from employee_management_app.EditResultViewClass import EditResultViewClass
 
 urlpatterns = [
     path('demo', views.showDemoPage),
