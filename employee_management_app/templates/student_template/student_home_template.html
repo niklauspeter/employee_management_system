@@ -1,6 +1,6 @@
 {% extends 'student_template/base_template.html' %}
 {% block page_title %}
-Home
+Employee Home
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -68,7 +68,7 @@ Home
               <div class="inner">
                 <h3>{{ subjects }}</h3>
 
-                <p>Total Subjects</p>
+                <p>Total Roles</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -268,21 +268,7 @@ Home
             })
     });
 
-    function sendToServer(token){
-         $.ajax({
-                url:'{% url 'student_fcmtoken_save' %}',
-                type:'POST',
-                data:{token:token},
-            })
-            .done(function(response){
-                if(response=="True"){
-                    console.log("Token Save")
-                }
-                else{
-                    console.log("Error in Token Save")
-                }
-            });
-    }
+    
     IntitalizeFireBaseMessaging();
 </script>
 {% endblock custom_js %}
