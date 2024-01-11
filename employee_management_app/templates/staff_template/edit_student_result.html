@@ -1,6 +1,6 @@
 {% extends 'staff_template/base_template.html' %}
 {% block page_title %}
-Edit Results
+Edit Appraisal
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -13,7 +13,7 @@ Edit Results
                  {% csrf_token %}
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit Results</h3>
+                <h3 class="card-title">Edit Appraisal</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -36,7 +36,7 @@ Edit Results
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block" id="fetch_student">Update Result</button>
+                  <button type="submit" class="btn btn-primary btn-block" id="fetch_student">Update Appraisal</button>
                 </div>
             </div>
              </form>
@@ -87,7 +87,7 @@ Edit Results
 
             })
             .fail(function(){
-                alert("Error in Fetching Student")
+                alert("Error in Fetching Employee")
             });
         }
 

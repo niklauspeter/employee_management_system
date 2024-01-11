@@ -19,7 +19,7 @@ View Attendance Data
                 <div class="card-body">
                     {% csrf_token %}
                    <div class="form-group">
-                    <label>Subject </label>
+                    <label>Role </label>
                     <select class="form-control" name="subject" id="subject">
                         {% for subject in subjects %}
                           <option value="{{ subject.id }}">{{ subject.subject_name }}</option>

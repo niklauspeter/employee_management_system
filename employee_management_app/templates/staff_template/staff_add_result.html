@@ -1,6 +1,6 @@
 {% extends 'staff_template/base_template.html' %}
 {% block page_title %}
-Add Results
+Make Appraisal
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -13,13 +13,13 @@ Add Results
                  {% csrf_token %}
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Results</h3>
+                <h3 class="card-title">Add Appraisal</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
                 <div class="card-body">
                    <div class="form-group">
-                    <label>Subject </label>
+                    <label>Role </label>
                     <select class="form-control" name="subject" id="subject">
                         {% for subject in subjects %}
                           <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
@@ -51,7 +51,7 @@ Add Results
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="button" class="btn btn-primary btn-block" id="fetch_student">Fetch Student</button>
+                  <button type="button" class="btn btn-primary btn-block" id="fetch_student">Fetch Employee</button>
                 </div>
                 <div id="student_data" class="card-footer">
 
@@ -84,7 +84,7 @@ Add Results
             .done(function(response){
                 var json_data=JSON.parse(response);
                 console.log(json_data)
-                var div_data="<div class='form-group'><label>Student List</label><select class='student_list form-control' name='student_list'>";
+                var div_data="<div class='form-group'><label>Employee List</label><select class='student_list form-control' name='student_list'>";
                 for(key in json_data)
                 {
                     div_data+="<option value='"+json_data[key]['id']+"'>ID : "+json_data[key]['id']+" : "+json_data[key]['name']+"</option>";
@@ -93,10 +93,10 @@ Add Results
                 div_data+="</div>";
                 div_data+="<div class='form-group'><div class='row'>"
                 div_data+="<div class='col-lg-6'>";
-                div_data+="<label> Assignment Marks : </label><input type='text' name='assignment_marks' class='form-control' placeholder='Assignment Marks'>";
+                div_data+="<label> Mid Year Appraisal : </label><input type='text' name='assignment_marks' class='form-control' placeholder='Assignment Marks'>";
                 div_data+="</div>";
                 div_data+="<div class='col-lg-6'>";
-                div_data+="<label> Exam Marks : </label><input type='text' name='exam_marks' class='form-control' placeholder='Exam Marks'>";
+                div_data+="<label> End of Year Performance Appraisal: </label><input type='text' name='exam_marks' class='form-control' placeholder='Exam Marks'>";
                 div_data+="</div>"
                 div_data+="</div></div>";
 

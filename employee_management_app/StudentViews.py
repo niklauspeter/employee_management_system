@@ -11,7 +11,11 @@ from employee_management_app.models import Students, Courses, Subjects, CustomUs
 
 
 def student_home(request):
+    student_final_result = []
+    student_mid_result = []
+
     student_obj=Students.objects.get(admin=request.user.id)
+    studentresult=StudentResult.objects.filter(student_id=student_obj.id)
     attendance_total=AttendanceReport.objects.filter(student_id=student_obj).count()
     attendance_present=AttendanceReport.objects.filter(student_id=student_obj,status=True).count()
     attendance_absent=AttendanceReport.objects.filter(student_id=student_obj,status=False).count()
@@ -20,6 +24,10 @@ def student_home(request):
     subjects_data=Subjects.objects.filter(course_id=course)
     session_obj=SessionYearModel.object.get(id=student_obj.session_year_id.id)
     class_room=OnlineClassRoom.objects.filter(subject__in=subjects_data,is_active=True,session_years=session_obj)
+
+    for studi in studentresult:
+        student_final_result.append(int(studi.subject_exam_marks))
+        student_mid_result.append(int(studi.subject_assignment_marks))
 
     subject_name=[]
     data_present=[]
@@ -33,7 +41,7 @@ def student_home(request):
         data_present.append(attendance_present_count)
         data_absent.append(attendance_absent_count)
 
-    return render(request,"student_template/student_home_template.html",{"total_attendance":attendance_total,"attendance_absent":attendance_absent,"attendance_present":attendance_present,"subjects":subjects,"data_name":subject_name,"data1":data_present,"data2":data_absent,"class_room":class_room})
+    return render(request,"student_template/student_home_template.html",{"total_attendance":attendance_total,"attendance_absent":attendance_absent,"attendance_present":attendance_present,"subjects":subjects,"data_name":subject_name,"data1":data_present,"data2":data_absent,"class_room":class_room,"data3":student_mid_result,"data4":student_final_result})
 
 def student_view_attendance(request):
     student=Students.objects.get(admin=request.user.id)
@@ -55,3 +63,8 @@ def student_view_attendance_post(request):
     attendance=Attendance.objects.filter(attendance_date__range=(start_data_parse,end_data_parse),subject_id=subject_obj)
     attendance_reports=AttendanceReport.objects.filter(attendance_id__in=attendance,student_id=stud_obj)
     return render(request,"student_template/student_attendance_data.html",{"attendance_reports":attendance_reports})
+
+def student_view_result(request):
+    student=Students.objects.get(admin=request.user.id)
+    studentresult=StudentResult.objects.filter(student_id=student.id)
+    return render(request,"student_template/student_result.html",{"studentresult":studentresult})
