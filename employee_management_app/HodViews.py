@@ -1,6 +1,3 @@
-I apologize for the oversight. I've corrected the mistake, replacing 'Staff' with 'Manager' as per your instructions. Here's the corrected code:
-
-```python
 import json
 
 import requests
