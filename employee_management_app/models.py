@@ -41,7 +41,7 @@ class Roles(models.Model):
     id = models.AutoField(primary_key=True)
     role_name = models.CharField(max_length=255)
     department_id = models.ForeignKey(Departments, on_delete=models.CASCADE, default=1)
-    staff_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    manager_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()

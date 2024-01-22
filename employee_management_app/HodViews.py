@@ -176,9 +176,10 @@ def add_role_save(request):
         role_name = request.POST.get("role_name")
         department_id = request.POST.get("department")
         department = Departments.objects.get(id=department_id)
-
+        manager_id = request.POST.get("manager")
+        manager = CustomUser.objects.get(id=manager_id)
         try:
-            role = Roles(role_name=role_name, department_id=department)
+            role = Roles(role_name=role_name, department_id=department, manager_id = manager)
             role.save()
             messages.success(request, "Successfully Added Role")
             return HttpResponseRedirect(reverse("add_role"))
