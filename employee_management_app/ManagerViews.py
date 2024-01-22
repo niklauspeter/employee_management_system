@@ -5,8 +5,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from employee_management_app.models import Roles, SessionYearModel, Employees, Attendance, AttendanceReport, \
-    LeaveReportEmployees, Managers, FeedBackManagers, CustomUser, Departments, NotificationManagers, EmployeeResult, OnlineClassRoom
+from employee_management_app.models import Roles, SessionYearModel, Employees, Attendance, AttendanceReport, Managers, CustomUser, Departments, EmployeeResult
 
 def manager_home(request):
     # For Fetch All Employee Under Manager
@@ -138,7 +137,7 @@ def get_attendance_employee(request):
     return JsonResponse(json.dumps(list_data), content_type="application/json", safe=False)
 
 @csrf_exempt
-def save_update_attendance_data(request):
+def save_updateattendance_data(request):
     employee_ids = request.POST.get("employee_ids")
     attendance_date = request.POST.get("attendance_date")
     attendance = Attendance.objects.get(id=attendance_date)

@@ -6,8 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
-from employee_management_app.models import Employees, Departments, Roles, CustomUser, Attendance, AttendanceReport, \
-    LeaveReportEmployee, FeedbackEmployee, NotificationEmployee, EmployeeResult, OnlineClassRoom, SessionYearModel
+from employee_management_app.models import Employees, Departments, Roles, CustomUser, Attendance, AttendanceReport, LeaveReportEmployee, EmployeeResult, SessionYearModel
 
 
 def employee_home(request):

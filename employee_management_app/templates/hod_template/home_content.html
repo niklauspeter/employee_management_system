@@ -11,14 +11,14 @@ Home
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{ student_count }}</h3>
+                <h3>{{ employee_count }}</h3>
 
                 <p>Total Employees</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="{% url 'manage_student' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'manage_employee' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -26,14 +26,14 @@ Home
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{ staff_count }}</h3>
+                <h3>{{ manager_count }}</h3>
 
                 <p>Total Managers</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="{% url 'manage_staff' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'manage_manager' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -41,14 +41,14 @@ Home
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>{{ course_count }}</h3>
+                <h3>{{ department_count }}</h3>
 
                 <p>Total Departments</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="{% url 'manage_course' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'manage_department' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -56,14 +56,14 @@ Home
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{ subject_count }}</h3>
+                <h3>{{ role_count }}</h3>
 
                 <p>Total Roles</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="{% url 'manage_subject' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'manage_role' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -154,7 +154,9 @@ Home
                   </div>
                   <div class="card-body">
                     <div class="chart">
-                      <canvas id="barChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                      <canvas id="barChart1" style="min-height: 250px; height: 250
+
+px; max-height: 250px; max-width: 100%;"></canvas>
                     </div>
                   </div>
                   <!-- /.card-body -->
@@ -197,7 +199,7 @@ Home
                   ],
                   datasets: [
                     {
-                      data: [{{ student_count }},{{ staff_count }}],
+                      data: [{{ employee_count }},{{ manager_count }}],
                       backgroundColor : ['#f56954', '#00a65a'],
                     }
                   ]
@@ -216,15 +218,15 @@ Home
               options: pieOptions
             });
 
-            //Second Chart for Total Subject in Each Course
-                var subject_count_list={{ subject_count_list }};
-                var course_name_list={{ course_name_list|safe }};
+            //Second Chart for Total Role in Each Department
+                var role_count_list={{ role_count_list }};
+                var department_name_list={{ department_name_list|safe }};
                 var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
                 var donutData        = {
-                  labels:course_name_list,
+                  labels:department_name_list,
                   datasets: [
                     {
-                      data: subject_count_list,
+                      data: role_count_list,
                       backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
                     }
                   ]
@@ -242,14 +244,14 @@ Home
                 });
 
 
-                //show total student in each course
-                var student_count_list_in_course={{ student_count_list_in_course }};
+                //show total employee in each department
+                var employee_count_list_in_department={{ employee_count_list_in_department }};
 
                   var pieData2        = {
-                          labels:course_name_list,
+                          labels:department_name_list,
                           datasets: [
                             {
-                              data: student_count_list_in_course,
+                              data: employee_count_list_in_department,
                               backgroundColor : ['#f56954', '#00a65a','#aa00ff', '#ff3d00'],
                             }
                           ]
@@ -266,15 +268,15 @@ Home
                       options: pieOptions2
                     });
 
-                //show total student in each Subject
-                var student_count_list_in_subject={{ student_count_list_in_subject }};
-                var subject_list={{ subject_list|safe }};
+                //show total employee in each Role
+                var employee_count_list_in_role={{ employee_count_list_in_role }};
+                var role_list={{ role_list|safe }};
 
                   var pieData3  = {
-                          labels:subject_list,
+                          labels:role_list,
                           datasets: [
                             {
-                              data: student_count_list_in_subject,
+                              data: employee_count_list_in_role,
                               backgroundColor : ['#f56954', '#00a65a','#aa00ff', '#ff3d00','#bf360c','#ffff00','#00e676','#40c4ff','#f56954', '#00a65a','#aa00ff', '#ff3d00','#bf360c','#ffff00','#00e676','#40c4ff'],
                             }
                           ]
@@ -291,12 +293,12 @@ Home
                       options: pieOption3
                     });
 
-                        ///Staff Leave vs Attendance Bar Chart
-                        var attendance_present_list_staff={{ attendance_present_list_staff }};
-                        var attendance_absent_list_staff={{ attendance_absent_list_staff }};
-                        var staff_name_list={{ staff_name_list|safe }};
+                        ///Manager Leave vs Attendance Bar Chart
+                        var attendance_present_list_manager={{ attendance_present_list_manager }};
+                        var attendance_absent_list_manager={{ attendance_absent_list_manager }};
+                        var manager_name_list={{ manager_name_list|safe }};
                         var barChartData = {
-                          labels  : staff_name_list,
+                          labels  : manager_name_list,
                           datasets: [
                             {
                               label               : 'Leaves',
@@ -307,7 +309,7 @@ Home
                               pointStrokeColor    : 'rgba(60,141,188,1)',
                               pointHighlightFill  : '#fff',
                               pointHighlightStroke: 'rgba(60,141,188,1)',
-                              data                : attendance_absent_list_staff
+                              data                : attendance_absent_list_manager
                             },
                             {
                               label               : 'Attendance',
@@ -318,7 +320,7 @@ Home
                               pointStrokeColor    : '#c1c7d1',
                               pointHighlightFill  : '#fff',
                               pointHighlightStroke: 'rgba(220,220,220,1)',
-                              data                : attendance_present_list_staff
+                              data                : attendance_present_list_manager
                             },
                           ]
                         }
@@ -340,12 +342,12 @@ Home
                           options: barChartOptions
                         })
 
-                        //Student Leaves vs Attendance
-                        var attendance_present_list_student={{ attendance_present_list_student }};
-                        var attendance_absent_list_student={{ attendance_absent_list_student }};
-                        var student_name_list={{ student_name_list|safe }};
+                        //Employee Leaves vs Attendance
+                        var attendance_present_list_employee={{ attendance_present_list_employee }};
+                        var attendance_absent_list_employee={{ attendance_absent_list_employee }};
+                        var employee_name_list={{ employee_name_list|safe }};
                         var barChartData2 = {
-                          labels  : student_name_list,
+                          labels  : employee_name_list,
                           datasets: [
                             {
                               label               : 'Leaves',
@@ -367,7 +369,7 @@ Home
                               pointStrokeColor    : '#c1c7d1',
                               pointHighlightFill  : '#fff',
                               pointHighlightStroke: 'rgba(220,220,220,1)',
-                              data                : attendance_present_list_student
+                              data                : attendance_present_list_employee
                             },
                           ]
                         }

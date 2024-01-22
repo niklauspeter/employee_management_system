@@ -10,9 +10,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 from employee_management_app.forms import AddEmployeeForm, EditEmployeeForm
-from employee_management_app.models import CustomUser, Managers, Departments, Roles, Employees, SessionYearModel, \
-    FeedBackEmployee, FeedBackManagers, LeaveReportEmployee, LeaveReportManagers, Attendance, AttendanceReport, \
-    NotificationEmployee, NotificationManagers
+from employee_management_app.models import CustomUser, Managers, Departments, Roles, Employees, SessionYearModel, LeaveReportEmployee, Attendance, AttendanceReport
 
 
 def admin_home(request):
