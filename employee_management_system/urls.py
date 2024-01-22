@@ -1,74 +1,60 @@
-"""
-URL configuration for employee_management_system project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path
 
 from django.urls import path
 from employee_management_system import settings
-from employee_management_app import views, HodViews, StaffViews, StudentViews, EditResultViewClass
+from employee_management_app import views, HodViews, ManagerViews, EmployeeViews, EditResultViewClass
 from employee_management_app.EditResultViewClass import EditResultViewClass
 
 urlpatterns = [
     path('demo', views.showDemoPage),
     path('admin/', admin.site.urls),
     path('', views.ShowLoginPage, name="show_login"),
-    path('doLogin',views.doLogin, name="do_login"),
+    path('doLogin', views.doLogin, name="do_login"),
     path('get_user_details', views.GetUserDetails),
-    path('logout_user', views.logout_user,name="logout"),
-    path('admin_home',HodViews.admin_home,name="admin_home"),
-    path('add_staff',HodViews.add_staff,name="add_staff"),
-    path('add_staff_save',HodViews.add_staff_save,name="add_staff_save"),
-    path('add_course', HodViews.add_course,name="add_course"),
-    path('add_course_save', HodViews.add_course_save,name="add_course_save"),
-    path('add_student', HodViews.add_student,name="add_student"),
-    path('add_student_save', HodViews.add_student_save,name="add_student_save"),
-    path('manage_staff', HodViews.manage_staff,name="manage_staff"),
-    path('manage_student', HodViews.manage_student,name="manage_student"),
-    path('manage_course', HodViews.manage_course,name="manage_course"),
-    path('edit_staff/<str:staff_id>', HodViews.edit_staff,name="edit_staff"),
-    path('edit_staff_save', HodViews.edit_staff_save,name="edit_staff_save"),
-    path('edit_student/<str:student_id>', HodViews.edit_student,name="edit_student"),
-    path('edit_student_save', HodViews.edit_student_save,name="edit_student_save"),
-    path('edit_course/<str:course_id>', HodViews.edit_course,name="edit_course"),
-    path('edit_course_save', HodViews.edit_course_save,name="edit_course_save"),
-    path('add_subject', HodViews.add_subject,name="add_subject"),
-    path('add_subject_save', HodViews.add_subject_save,name="add_subject_save"),
-    path('manage_subject', HodViews.manage_subject,name="manage_subject"),
-    path('edit_subject/<str:subject_id>', HodViews.edit_subject,name="edit_subject"),
-    path('edit_subject_save', HodViews.edit_subject_save,name="edit_subject_save"),
-    path('manage_session', HodViews.manage_session,name="manage_session"),
-    path('add_session_save', HodViews.add_session_save,name="add_session_save"),
-    #staff Url Paths
-    path('staff_home', StaffViews.staff_home, name="staff_home"),
-    path('staff_take_attendance', StaffViews.staff_take_attendance, name="staff_take_attendance"),
-    path('get_students', StaffViews.get_students, name="get_students"),
-    path('save_attendance_data', StaffViews.save_attendance_data, name="save_attendance_data"),
-    path('staff_update_attendance', StaffViews.staff_update_attendance, name="staff_update_attendance"),
-    path('get_attendance_dates', StaffViews.get_attendance_dates, name="get_attendance_dates"),
-    path('get_attendance_student', StaffViews.get_attendance_student, name="get_attendance_student"),
-    path('save_updateattendance_data', StaffViews.save_updateattendance_data, name="save_updateattendance_data"),
-    path('staff_add_result', StaffViews.staff_add_result, name="staff_add_result"),
-    path('save_student_result', StaffViews.save_student_result, name="save_student_result"),
-    path('edit_student_result',EditResultViewClass.as_view(), name="edit_student_result"),
-    path('fetch_result_student',StaffViews.fetch_result_student, name="fetch_result_student"),
-    #student Url Paths
-    path('student_home', StudentViews.student_home, name="student_home"),
-    path('student_view_attendance', StudentViews.student_view_attendance, name="student_view_attendance"),
-    path('student_view_attendance_post', StudentViews.student_view_attendance_post, name="student_view_attendance_post"),
-    path('student_view_result',StudentViews.student_view_result,name="student_view_result")
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+    path('logout_user', views.logout_user, name="logout"),
+    path('admin_home', HodViews.admin_home, name="admin_home"),
+    path('add_manager', HodViews.add_manager, name="add_manager"),
+    path('add_manager_save', HodViews.add_manager_save, name="add_manager_save"),
+    path('add_department', HodViews.add_department, name="add_department"),
+    path('add_department_save', HodViews.add_department_save, name="add_department_save"),
+    path('add_employee', HodViews.add_employee, name="add_employee"),
+    path('add_employee_save', HodViews.add_employee_save, name="add_employee_save"),
+    path('manage_managers', HodViews.manage_managers, name="manage_managers"),
+    path('manage_employees', HodViews.manage_employees, name="manage_employees"),
+    path('manage_departments', HodViews.manage_departments, name="manage_departments"),
+    path('edit_manager/<str:manager_id>', HodViews.edit_manager, name="edit_manager"),
+    path('edit_manager_save', HodViews.edit_manager_save, name="edit_manager_save"),
+    path('edit_employee/<str:employee_id>', HodViews.edit_employee, name="edit_employee"),
+    path('edit_employee_save', HodViews.edit_employee_save, name="edit_employee_save"),
+    path('edit_department/<str:department_id>', HodViews.edit_department, name="edit_department"),
+    path('edit_department_save', HodViews.edit_department_save, name="edit_department_save"),
+    path('add_role', HodViews.add_role, name="add_role"),
+    path('add_role_save', HodViews.add_role_save, name="add_role_save"),
+    path('manage_role', HodViews.manage_role, name="manage_role"),
+    path('edit_role/<str:role_id>', HodViews.edit_role, name="edit_role"),
+    path('edit_role_save', HodViews.edit_role_save, name="edit_role_save"),
+    path('manage_session', HodViews.manage_session, name="manage_session"),
+    path('add_session_save', HodViews.add_session_save, name="add_session_save"),
+    # manager Url Paths
+    path('manager_home', ManagerViews.manager_home, name="manager_home"),
+    path('manager_take_attendance', ManagerViews.manager_take_attendance, name="manager_take_attendance"),
+    path('get_employees', ManagerViews.get_employees, name="get_employees"),
+    path('save_attendance_data', ManagerViews.save_attendance_data, name="save_attendance_data"),
+    path('manager_update_attendance', ManagerViews.manager_update_attendance, name="manager_update_attendance"),
+    path('get_attendance_dates', ManagerViews.get_attendance_dates, name="get_attendance_dates"),
+    path('get_attendance_employee', ManagerViews.get_attendance_employee, name="get_attendance_employee"),
+    path('save_updateattendance_data', ManagerViews.save_updateattendance_data, name="save_updateattendance_data"),
+    path('manager_add_result', ManagerViews.manager_add_result, name="manager_add_result"),
+    path('save_employee_result', ManagerViews.save_employee_result, name="save_employee_result"),
+    path('edit_employee_result', EditResultViewClass.as_view(), name="edit_employee_result"),
+    path('fetch_result_employee', ManagerViews.fetch_result_employee, name="fetch_result_employee"),
+    # employee Url Paths
+    path('employee_home', EmployeeViews.employee_home, name="employee_home"),
+    path('employee_view_attendance', EmployeeViews.employee_view_attendance, name="employee_view_attendance"),
+    path('employee_view_attendance_post', EmployeeViews.employee_view_attendance_post,
+         name="employee_view_attendance_post"),
+    path('employee_view_result', EmployeeViews.employee_view_result, name="employee_view_result")
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
+                                                                           document_root=settings.STATIC_ROOT)
