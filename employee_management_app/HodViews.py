@@ -116,7 +116,7 @@ def add_department_save(request):
             department_model.save()
             messages.success(request, "Successfully Added Department")
             return HttpResponseRedirect(reverse("add_department"))
-        except Exception as e:
+        except Exception as e: 
             print(e)
             messages.error(request, "Failed To Add Department")
             return HttpResponseRedirect(reverse("add_department"))
@@ -165,7 +165,8 @@ def add_employee_save(request):
 
 def add_role(request):
     departments = Departments.objects.all()
-    return render(request, "hod_template/add_role_template.html", {"departments": departments})
+    managers=CustomUser.objects.filter(user_type=2)
+    return render(request, "hod_template/add_role_template.html", {"managers":managers,"departments": departments})
 
 
 def add_role_save(request):

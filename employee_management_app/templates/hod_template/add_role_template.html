@@ -15,26 +15,26 @@ Add Role
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/add_subject_save" method="post">
+              <form role="form" action="/add_role_save" method="post">
                   {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
                     <label>Name of Role</label>
-                    <input type="text" class="form-control" name="subject_name" placeholder="Enter Subject">
+                    <input type="text" class="form-control" name="role_name" placeholder="Enter Employee Role">
                   </div>
                    <div class="form-group">
                     <label>Department </label>
-                    <select class="form-control" name="course">
-                        {% for course in courses %}
-                          <option value="{{ course.id }}">{{ course.course_name }}</option>
+                    <select class="form-control" name="department">
+                        {% for department in departments %}
+                          <option value="{{ department.id }}">{{ department.department_name }}</option>
                         {% endfor %}
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Manager</label>
                     <select class="form-control" name="staff">
-                        {% for staff in staffs %}
-                          <option value="{{ staff.id }}">{{ staff.first_name }} {{ staff.last_name }}</option>
+                        {% for manager in managers %}
+                          <option value="{{ manager.id }}">{{ manager.first_name }} {{ manager.last_name }}</option>
                         {% endfor %}
                     </select>
                   </div>
