@@ -41,17 +41,17 @@ Manage Manager
                     </tr>
                   </thead>
                   <tbody>
-                  {% for staff in staffs %}
+                  {% for manager in managers %}
                     <tr>
-                      <td>{{ staff.admin.id }}</td>
-                      <td>{{ staff.admin.first_name }}</td>
-                      <td>{{ staff.admin.last_name }}</td>
-                      <td>{{ staff.admin.username }}</td>
-                      <td>{{ staff.admin.email }}</td>
-                      <td>{{ staff.address }}</td>
-                      <td>{{ staff.admin.last_login }}</td>
-                      <td>{{ staff.admin.date_joined }}</td>
-                      <td><a href="/edit_staff/{{ staff.admin.id }}" class="btn btn-success">Edit</a></td>
+                      <td>{{ manager.admin.id }}</td>
+                      <td>{{ manager.admin.first_name }}</td>
+                      <td>{{ manager.admin.last_name }}</td>
+                      <td>{{ manager.admin.username }}</td>
+                      <td>{{ manager.admin.email }}</td>
+                      <td>{{ manager.address }}</td>
+                      <td>{{ manager.admin.last_login }}</td>
+                      <td>{{ manager.admin.date_joined }}</td>
+                      <td><a href="/edit_manager/{{ manager.admin.id }}" class="btn btn-success">Edit</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>

@@ -35,11 +35,11 @@ Manage Department
                     </tr>
                   </thead>
                   <tbody>
-                  {% for course in courses %}
+                  {% for department in departments %}
                     <tr>
-                      <td>{{ course.id }}</td>
-                      <td>{{ course.course_name }}</td>
-                      <td><a href="/edit_course/{{ course.id }}" class="btn btn-success">Edit</a></td>
+                      <td>{{ department.id }}</td>
+                      <td>{{ department.department_name }}</td>
+                      <td><a href="/edit_department/{{ department.id }}" class="btn btn-success">Edit</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>

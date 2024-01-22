@@ -139,25 +139,31 @@ def add_employee_save(request):
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
             address = form.cleaned_data["address"]
+            session_year_id=form.cleaned_data["session_year_id"]
             department_id = form.cleaned_data["department"]
+            sex=form.cleaned_data["sex"]
+
             profile_pic = request.FILES['profile_pic']
             fs = FileSystemStorage()
             filename = fs.save(profile_pic.name, profile_pic)
             profile_pic_url = fs.url(filename)
 
-            try:
-                user = CustomUser.objects.create_user(username=username, password=password, email=email,
-                                                      last_name=last_name, first_name=first_name, user_type=3)
-                user.employees.address = address
-                department_obj = Departments.objects.get(id=department_id)
-                user.employees.department_id = department_obj
-                user.employees.profile_pic = profile_pic_url
-                user.save()
-                messages.success(request, "Successfully Added Employee")
-                return HttpResponseRedirect(reverse("add_employee"))
-            except:
-                messages.error(request, "Failed to Add Employee")
-                return HttpResponseRedirect(reverse("add_employee"))
+            # try:
+            user = CustomUser.objects.create_user(username=username, password=password, email=email,
+                                                    last_name=last_name, first_name=first_name, user_type=3)
+            user.employees.address = address
+            department_obj = Departments.objects.get(id=department_id)
+            user.employees.department_id = department_obj
+            user.employees.gender=sex
+            session_year=SessionYearModel.objects.get(id=session_year_id)
+            user.employees.session_year_id=session_year
+            user.employees.profile_pic = profile_pic_url
+            user.save()
+            messages.success(request, "Successfully Added Employee")
+            return HttpResponseRedirect(reverse("add_employee"))
+            # except:
+            #     messages.error(request, "Failed to Add Employee")
+            #     return HttpResponseRedirect(reverse("add_employee"))
         else:
             form = AddEmployeeForm(request.POST)
             return render(request, "hod_template/add_employee_template.html", {"form": form})

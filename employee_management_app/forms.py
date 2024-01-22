@@ -30,7 +30,7 @@ class AddEmployeeForm(forms.Form):
     session_list = []
 
     try:
-        sessions = SessionYearModel.object.all()
+        sessions = SessionYearModel.objects.all()
 
         for ses in sessions:
             small_ses = (ses.id, str(ses.session_start_year) + " TO " + str(ses.session_end_year))

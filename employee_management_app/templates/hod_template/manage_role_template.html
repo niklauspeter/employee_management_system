@@ -30,22 +30,22 @@ Manage Role
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Subject Name</th>
-                      <th>Course Name</th>
-                      <th>Course ID</th>
-                      <th>Staff Name</th>
+                      <th>Role Name</th>
+                      <th>Department Name</th>
+                      <th>Department ID</th>
+                      <th>Manager Name</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                  {% for subject in subjects %}
+                  {% for role in roles %}
                     <tr>
-                      <td>{{ subject.id }}</td>
-                      <td>{{ subject.subject_name }}</td>
-                      <td>{{ subject.course_id.course_name }}</td>
-                      <td>{{ subject.course_id.id }}</td>
-                      <td>{{ subject.staff_id.first_name }} {{ subject.staff_id.last_name }}</td>
-                      <td><a href="/edit_subject/{{ subject.id }}" class="btn btn-success">Edit</a></td>
+                      <td>{{ role.id }}</td>
+                      <td>{{ role.role_name }}</td>
+                      <td>{{ role.department_id.department_name }}</td>
+                      <td>{{ role.department_id.id }}</td>
+                      <td>{{ role.manager_id.first_name }} {{ role.manager_id.last_name }}</td>
+                      <td><a href="/edit_role/{{ role.id }}" class="btn btn-success">Edit</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>
