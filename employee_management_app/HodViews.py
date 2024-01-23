@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 from employee_management_app.forms import AddEmployeeForm, EditEmployeeForm
-from employee_management_app.models import CustomUser, Managers, Departments, Roles, Employees, SessionYearModel, LeaveReportEmployee, Attendance, AttendanceReport
+from employee_management_app.models import CustomUser, Managers, Departments, Roles, Employees, SessionYearModel, LeaveReportEmployee, Attendance, AttendanceReport, LeaveReportManager
 
 
 def admin_home(request):
@@ -46,7 +46,7 @@ def admin_home(request):
     for manager in managers:
         role_ids = Roles.objects.filter(manager_id=manager.admin.id)
         attendance = Attendance.objects.filter(role_id__in=role_ids).count()
-        leaves = LeaveReportManagers.objects.filter(manager_id=manager.id, leave_status=1).count()
+        leaves = LeaveReportManager.objects.filter(manager_id=manager.id, leave_status=1).count()
         attendance_present_list_managers.append(attendance)
         attendance_absent_list_managers.append(leaves)
         manager_name_list.append(manager.admin.username)
@@ -148,22 +148,22 @@ def add_employee_save(request):
             filename = fs.save(profile_pic.name, profile_pic)
             profile_pic_url = fs.url(filename)
 
-            # try:
-            user = CustomUser.objects.create_user(username=username, password=password, email=email,
-                                                    last_name=last_name, first_name=first_name, user_type=3)
-            user.employees.address = address
-            department_obj = Departments.objects.get(id=department_id)
-            user.employees.department_id = department_obj
-            user.employees.gender=sex
-            session_year=SessionYearModel.objects.get(id=session_year_id)
-            user.employees.session_year_id=session_year
-            user.employees.profile_pic = profile_pic_url
-            user.save()
-            messages.success(request, "Successfully Added Employee")
-            return HttpResponseRedirect(reverse("add_employee"))
-            # except:
-            #     messages.error(request, "Failed to Add Employee")
-            #     return HttpResponseRedirect(reverse("add_employee"))
+            try:
+                user = CustomUser.objects.create_user(username=username, password=password, email=email,
+                                                        last_name=last_name, first_name=first_name, user_type=3)
+                user.employees.address = address
+                department_obj = Departments.objects.get(id=department_id)
+                user.employees.department_id = department_obj
+                user.employees.gender=sex
+                session_year=SessionYearModel.objects.get(id=session_year_id)
+                user.employees.session_year_id=session_year
+                user.employees.profile_pic = profile_pic_url
+                user.save()
+                messages.success(request, "Successfully Added Employee")
+                return HttpResponseRedirect(reverse("add_employee"))
+            except:
+                messages.error(request, "Failed to Add Employee")
+                return HttpResponseRedirect(reverse("add_employee"))
         else:
             form = AddEmployeeForm(request.POST)
             return render(request, "hod_template/add_employee_template.html", {"form": form})

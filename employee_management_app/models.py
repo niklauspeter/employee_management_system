@@ -128,4 +128,4 @@ def save_user_profile(sender, instance, **kwargs):
     elif instance.user_type == 2:
         instance.managers.save()
     elif instance.user_type == 3:
-        instance
+        instance.employees.save()
