@@ -1,4 +1,4 @@
-{% extends 'staff_template/base_template.html' %}
+{% extends 'manager_template/base_template.html' %}
 {% block page_title %}
 Manager Home
 {% endblock page_title %}
@@ -11,14 +11,14 @@ Manager Home
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{ students_count }}</h3>
+                <h3>{{ employees_count }}</h3>
 
                 <p>Employees Under Me</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{% url 'staff_take_attendance' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'manager_take_attendance' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -33,7 +33,7 @@ Manager Home
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{% url 'staff_take_attendance' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'manager_take_attendance' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -56,7 +56,7 @@ Manager Home
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{ subject_count }}</h3>
+                <h3>{{ role_count }}</h3>
 
                 <p>Total Roles</p>
               </div>
@@ -161,12 +161,12 @@ Manager Home
 
 
                 var attendance_list={{ attendance_list }};
-                var subject_list={{ subject_list|safe }};
+                var role_list={{ role_list|safe }};
                 var barChartData = {
-                  labels  : subject_list,
+                  labels  : role_list,
                   datasets: [
                     {
-                      label               : 'Attend Subject Chart',
+                      label               : 'Attend Role Chart',
                       backgroundColor     : 'rgba(60,141,188,0.9)',
                       borderColor         : 'rgba(60,141,188,0.8)',
                       pointRadius          : false,
@@ -195,14 +195,14 @@ Manager Home
                 })
 
 
-                var student_list={{ student_list|safe }};
+                var employee_list={{ employee_list|safe }};
                 var present_list={{ present_list }};
                 var absent_list={{ absent_list }};
                  var barChartData2 = {
-                  labels  : student_list,
+                  labels  : employee_list,
                   datasets: [
                     {
-                      label               : 'Student Attendance Chart For Present',
+                      label               : 'Employee Attendance Chart For Present',
                       backgroundColor     : 'rgba(60,141,188,0.9)',
                       borderColor         : 'rgba(60,141,188,0.8)',
                       pointRadius          : false,
@@ -213,7 +213,7 @@ Manager Home
                       data                : present_list
                     },
                     {
-                      label               : 'Student Attendance Chart for Absent',
+                      label               : 'Employee Attendance Chart for Absent',
                       backgroundColor     : 'rgba(200,141,188,0.9)',
                       borderColor         : 'rgba(200,141,188,0.8)',
                       pointRadius          : false,

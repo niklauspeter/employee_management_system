@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from employee_management_app.models import Roles, SessionYearModel, Employees, Attendance, AttendanceReport, Managers, CustomUser, Departments, EmployeeResult
+from employee_management_app.models import Roles, SessionYearModel, Employees, Attendance, AttendanceReport, Managers, CustomUser, Departments, EmployeeResult, LeaveReportEmployee
 
 def manager_home(request):
     # For Fetch All Employee Under Manager
@@ -28,7 +28,8 @@ def manager_home(request):
 
     # Fetch All Approve Leave
     manager = Managers.objects.get(admin=request.user.id)
-    leave_count = LeaveReportEmployees.objects.filter(manager_id=manager.id, leave_status=1).count()
+    # leave_count = LeaveReportEmployee.objects.filter(manager_id=manager.id, leave_status=1).count()
+    # "leave_count": leave_count,
     role_count = roles.count()
 
     # Fetch Attendance Data by Role
@@ -52,7 +53,7 @@ def manager_home(request):
 
     return render(request, "manager_template/manager_home_template.html",
                   {"employees_count": employees_count, "attendance_count": attendance_count,
-                   "leave_count": leave_count, "role_count": role_count, "role_list": role_list,
+                    "role_count": role_count, "role_list": role_list,
                    "attendance_list": attendance_list, "employee_list": employee_list,
                    "present_list": employee_list_attendance_present,
                    "absent_list": employee_list_attendance_absent})
@@ -60,7 +61,7 @@ def manager_home(request):
 
 def manager_take_attendance(request):
     roles = Roles.objects.filter(manager_id=request.user.id)
-    session_years = SessionYearModel.object.all()
+    session_years = SessionYearModel.objects.all()
     return render(request, "manager_template/manager_take_attendance.html", {"roles": roles, "session_years": session_years})
 
 @csrf_exempt
@@ -69,7 +70,7 @@ def get_employees(request):
     session_year = request.POST.get("session_year")
 
     role = Roles.objects.get(id=role_id)
-    session_model = SessionYearModel.object.get(id=session_year)
+    session_model = SessionYearModel.objects.get(id=session_year)
     employees = Employees.objects.filter(department_id=role.department_id, session_year_id=session_model)
     list_data = []
 
@@ -86,7 +87,7 @@ def save_attendance_data(request):
     session_year_id = request.POST.get("session_year_id")
 
     role_model = Roles.objects.get(id=role_id)
-    session_model = SessionYearModel.object.get(id=session_year_id)
+    session_model = SessionYearModel.objects.get(id=session_year_id)
     json_employees = json.loads(employee_ids)
 
     try:

@@ -17,19 +17,19 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 else:
                     return HttpResponseRedirect(reverse("admin_home"))
             elif user.user_type == "2":
-                if modulename == "employee_management_app.StaffViews" or modulename == "django.views.static" or modulename == "employee_management_app.EditResultViewClass":
+                if modulename == "employee_management_app.ManagerViews" or modulename == "django.views.static" or modulename == "employee_management_app.EditResultViewClass":
                     pass
                 elif modulename == "employee_management_app.views":
                     pass
                 else:
-                    return HttpResponseRedirect(reverse("staff_home"))
+                    return HttpResponseRedirect(reverse("manager_home"))
             elif user.user_type == "3":
-                if modulename == "employee_management_app.StudentViews" or modulename == "django.views.static":
+                if modulename == "employee_management_app.EmployeeViews" or modulename == "django.views.static":
                     pass
                 elif modulename == "employee_management_app.views":
                     pass    
                 else:
-                    return HttpResponseRedirect(reverse("student_home"))
+                    return HttpResponseRedirect(reverse("employee_home"))
             else:
                 return HttpResponseRedirect(reverse("show_login"))
 
